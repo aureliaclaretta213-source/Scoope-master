@@ -6,6 +6,7 @@ import { ShopModal } from './components/ShopModal';
 import { LevelSelectModal } from './components/LevelSelectModal';
 import { ResultModal } from './components/ResultModal';
 import { PauseModal } from './components/PauseModal';
+import { InstallModal } from './components/InstallModal';
 import { LuckyScoopPhysics, PhysicsItem } from './game/physics';
 import { LEVELS, UPGRADES_CONFIG } from './data/gameData';
 import { GameState, LevelConfig, PlayerStats, UpgradeState } from './types/game';
@@ -17,6 +18,7 @@ const STORAGE_KEY_UPGRADES = 'lucky_scoop_upgrades_v2';
 
 export default function App() {
   const [gameState, setGameState] = useState<GameState>('title');
+  const [showInstallModal, setShowInstallModal] = useState<boolean>(false);
   const [currentLevel, setCurrentLevel] = useState<LevelConfig>(LEVELS[0]);
   const [isFreeplay, setIsFreeplay] = useState<boolean>(false);
   const [currentScore, setCurrentScore] = useState<number>(0);
@@ -304,6 +306,7 @@ export default function App() {
           onStartFreeplay={startFreeplay}
           onOpenLevelSelect={() => setGameState('level_select')}
           onOpenShop={() => setGameState('shop')}
+          onOpenInstallModal={() => setShowInstallModal(true)}
           isMuted={isMuted}
           onToggleMute={() => {
             const next = sound.toggleMute();
@@ -312,6 +315,11 @@ export default function App() {
           coins={stats.coins}
           totalStars={totalStars}
         />
+      )}
+
+      {/* Android & PWA Installation Workflow Modal */}
+      {showInstallModal && (
+        <InstallModal onClose={() => setShowInstallModal(false)} />
       )}
 
       {/* In-Game HUD */}

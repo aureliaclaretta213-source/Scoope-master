@@ -9,6 +9,7 @@ interface TitleScreenProps {
   onStartFreeplay: () => void;
   onOpenLevelSelect: () => void;
   onOpenShop: () => void;
+  onOpenInstallModal: () => void;
   isMuted: boolean;
   onToggleMute: () => void;
   coins: number;
@@ -20,6 +21,7 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
   onStartFreeplay,
   onOpenLevelSelect,
   onOpenShop,
+  onOpenInstallModal,
   isMuted,
   onToggleMute,
   coins,
@@ -30,7 +32,7 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
   return (
     <div className="absolute inset-0 z-20 flex flex-col items-center justify-between pointer-events-auto p-4 sm:p-6 select-none bg-radial from-transparent via-[#070913]/70 to-[#05070f]/95 overflow-y-auto custom-scrollbar">
       {/* Top Bar with Coins, Stars, Android PWA Install, and Audio Toggle */}
-      <div className="w-full max-w-4xl flex items-center justify-between pt-1">
+      <div className="w-full max-w-4xl flex items-center justify-between pt-1 gap-2 flex-wrap sm:flex-nowrap">
         <div className="flex items-center gap-2 sm:gap-3">
           <div className="flex items-center gap-1.5 bg-[#141829]/90 border border-amber-500/40 rounded-full px-3 sm:px-4 py-1.5 shadow-lg">
             <span className="text-amber-400 font-bold text-xs sm:text-sm tracking-wide">⭐ BINTANG:</span>
@@ -43,19 +45,18 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
         </div>
 
         <div className="flex items-center gap-2">
-          {/* Android PWA Install Button */}
-          {isInstallable && (
-            <button
-              onClick={() => {
-                haptics.light();
-                install();
-              }}
-              className="flex items-center gap-1.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-black text-xs px-3.5 py-2 rounded-full shadow-lg active:scale-95 transition-all"
-            >
-              <Smartphone className="w-4 h-4" />
-              <span>Pasang di Android</span>
-            </button>
-          )}
+          {/* Installation Workflow Button */}
+          <button
+            onClick={() => {
+              haptics.light();
+              sound.playClick();
+              onOpenInstallModal();
+            }}
+            className="flex items-center gap-1.5 bg-gradient-to-r from-emerald-600/30 to-teal-600/30 hover:from-emerald-600/50 hover:to-teal-600/50 border border-emerald-400/50 text-emerald-300 font-extrabold text-xs px-3.5 py-1.5 rounded-full shadow-lg active:scale-95 transition-all"
+          >
+            <Smartphone className="w-3.5 h-3.5" />
+            <span>Alur Instalasi Android</span>
+          </button>
 
           <button
             onClick={() => {
