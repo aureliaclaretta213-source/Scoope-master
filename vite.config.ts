@@ -46,7 +46,7 @@ export default defineConfig(() => {
     ],
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '.'),
+        '@': typeof import.meta.dirname !== 'undefined' ? import.meta.dirname : path.resolve(),
       },
     },
     server: {

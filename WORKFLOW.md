@@ -70,7 +70,10 @@ Hasil build produksi tersimpan di direktori `dist/` siap di-hosting atau di-depl
 
 ## ⚙️ 4. Alur Kerja Otomatis (CI/CD GitHub Actions)
 
-File workflow `.github/workflows/ci.yml` secara otomatis memvalidasi setiap *commit* atau *pull request*:
-- Memeriksa integritas dependensi (`npm ci`).
+File workflow `.github/workflows/ci.yml` secara otomatis memvalidasi setiap *commit*, *pull request*, atau eksekusi manual (*workflow_dispatch*):
+- Menggunakan `package-lock.json` dan `.npmrc` dengan resolusi peer dependency otomatis (`legacy-peer-deps=true`).
+- Menginstal dependensi dengan aman (`npm ci --legacy-peer-deps || npm install --legacy-peer-deps`).
 - Menjalankan static type checking (`npm run lint`).
 - Mengompilasi build produksi PWA (`npm run build`).
+
+Jika terjadi kendala pada GitHub Actions sebelumnya, penyebab utamanya adalah ketiadaan file `package-lock.json` yang diwajibkan oleh perintah `npm ci` bawaan serta konflik resolusi peer dependencies esbuild pada npm versi lama. Masalah ini kini telah diperbaiki secara tuntas dengan pembuatan `package-lock.json` resmi, konfigurasi `.npmrc`, dan penyesuaian versi esbuild yang kompatibel dengan Vite 8.
