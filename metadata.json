@@ -1,0 +1,6 @@
+{
+  "name": "Lucky Scoop 3D - Serokan Hoki",
+  "description": "Game simulasi Lucky Scoop 3D dengan fisika serokan seru, beragam hadiah berkilau, dan sistem progres level yang menantang.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

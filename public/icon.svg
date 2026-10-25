@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1e1438"/>
+      <stop offset="60%" stop-color="#0e1326"/>
+      <stop offset="100%" stop-color="#070913"/>
+    </radialGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff9c4"/>
+      <stop offset="50%" stop-color="#ffd600"/>
+      <stop offset="100%" stop-color="#ff8f00"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00e5ff"/>
+      <stop offset="100%" stop-color="#2979ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#ffd600" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+  
+  <!-- Outer Neon Ring -->
+  <circle cx="256" cy="256" r="210" fill="none" stroke="#00e5ff" stroke-width="6" opacity="0.4"/>
+  <circle cx="256" cy="256" r="195" fill="none" stroke="#ffd600" stroke-width="2" stroke-dasharray="12 8" opacity="0.6"/>
+
+  <!-- Scoop Shovel Bucket Shape -->
+  <g filter="url(#shadow)">
+    <!-- Shovel handle / arm -->
+    <path d="M256 60 L256 180" stroke="#cfd8dc" stroke-width="22" stroke-linecap="round"/>
+    <circle cx="256" cy="180" r="20" fill="#ffab00"/>
+    
+    <!-- Shovel Bucket -->
+    <path d="M120 200 C 120 370, 392 370, 392 200 L 360 200 C 360 330, 152 330, 152 200 Z" fill="url(#goldGrad)" stroke="#fff" stroke-width="4"/>
+    
+    <!-- Shovel Edge Teeth -->
+    <rect x="135" y="190" width="242" height="18" rx="8" fill="#e0e0e0"/>
+  </g>
+
+  <!-- Items inside scoop: Gems and Duck -->
+  <!-- Lucky Duck -->
+  <g transform="translate(230, 240) scale(1.1)">
+    <!-- Duck Body -->
+    <ellipse cx="25" cy="40" rx="36" ry="26" fill="#ffd600"/>
+    <!-- Duck Head -->
+    <circle cx="15" cy="18" r="18" fill="#ffd600"/>
+    <!-- Beak -->
+    <path d="M3 18 L -14 22 L 3 26 Z" fill="#ff6d00"/>
+    <!-- Eye -->
+    <circle cx="12" cy="14" r="3.5" fill="#000"/>
+  </g>
+
+  <!-- Sparkling Gems -->
+  <polygon points="180,240 195,220 220,225 205,255 185,255" fill="url(#cyanGrad)" stroke="#fff" stroke-width="2"/>
+  <polygon points="320,245 345,230 365,248 350,270 325,265" fill="#e040fb" stroke="#fff" stroke-width="2"/>
+
+  <!-- Star sparkles -->
+  <path d="M380 120 L388 138 L406 146 L388 154 L380 172 L372 154 L354 146 L372 138 Z" fill="#fff" opacity="0.9"/>
+  <path d="M110 130 L115 142 L127 147 L115 152 L110 164 L105 152 L93 147 L105 142 Z" fill="#ffd600" opacity="0.8"/>
+</svg>
